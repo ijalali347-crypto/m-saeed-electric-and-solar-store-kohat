@@ -23,3 +23,40 @@ body{background:#03070d;background-image:radial-gradient(circle at 10% 12%,#ff00
 
 /* Product detail popup */
 .detail-modal{position:fixed;inset:0;z-index:200;background:#000b;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px}.detail-modal.open{display:flex}.detail-box{position:relative;width:min(520px,100%);border:2px solid #ffe13b;border-radius:24px;padding:30px 24px;background:radial-gradient(circle at 50% 0,#193c32,#070c11 58%);box-shadow:0 0 28px #00e5ff55,0 0 50px #ffe60033;color:#fff;text-align:center}.detail-close{position:absolute;top:10px;right:12px;width:38px;height:38px;border:0;border-radius:50%;background:#ffffff18;color:#fff;font-size:28px;cursor:pointer}.detail-icon{font-size:54px;filter:drop-shadow(0 0 15px #00e5ff)}.detail-box h2{font-size:27px;margin:8px 0}.detail-price{margin:15px 0;padding:15px;border:1px solid #26e77b;border-radius:14px;background:#08251a;color:#ffe761;font-size:20px;font-weight:900;line-height:1.65}.detail-box p{color:#b9c9c1}.detail-wa{display:inline-block;margin-top:10px;padding:12px 20px;border-radius:30px;background:#20b95d;color:#fff;text-decoration:none;font-weight:900}.detail-wa:hover{filter:brightness(1.12)}html[dir="rtl"] .detail-close{right:auto;left:12px}@media(max-width:560px){.detail-box{padding:27px 17px}.detail-price{font-size:17px}.detail-box h2{font-size:23px}}
+
+/* 50% WHITE / 50% ELECTRIC DARK THEME */
+#products.section{background:linear-gradient(135deg,#ffffff 0%,#f7faf9 58%,#eaf5ef 100%)!important;color:#101820!important;position:relative}
+#products .section-head span{color:#08783d!important}
+#products .section-head h2{color:#101820!important;text-shadow:none!important}
+#products .section-head p{color:#56635d!important}
+#products .product{background:linear-gradient(145deg,#ffffff,#f2f7f4)!important;border:1px solid #d9e5de!important;box-shadow:0 12px 30px rgba(10,40,25,.09),0 0 0 1px rgba(255,255,255,.9) inset!important}
+#products .product:hover{border-color:#24bd69!important;box-shadow:0 18px 38px rgba(11,115,61,.15),0 0 18px rgba(0,229,255,.10)!important}
+#products .product h3{color:#102019!important}
+#products .product p{color:#5c6962!important}
+#products .product .tags span{background:#e9f6ee!important;color:#17643c!important;border-color:#b9dec8!important}
+#products .product .icon{background:linear-gradient(145deg,#ffffff,#e7f4ec)!important;box-shadow:0 7px 18px rgba(0,0,0,.08)!important}
+#products .product button{background:linear-gradient(135deg,#0c9a4c,#19c86b)!important;color:#fff!important;box-shadow:0 6px 15px rgba(12,154,76,.22)!important}
+
+.appliances{background:linear-gradient(180deg,#071019 0%,#0b1712 100%)!important}
+.systems{background:linear-gradient(135deg,#ffffff,#f4f8f6)!important;color:#111b16!important}
+.systems .section-head span{color:#08783d!important}
+.systems .section-head h2{color:#111b16!important;text-shadow:none!important}
+.systems .section-head p{color:#617068!important}
+.systems .package-grid article{background:linear-gradient(145deg,#ffffff,#eef5f1)!important;color:#17221c!important;border-color:#d4e4da!important;box-shadow:0 12px 30px rgba(13,65,39,.10)!important}
+.systems .package-grid article.featured{border:2px solid #18b65c!important;box-shadow:0 15px 35px rgba(14,156,76,.18)!important}
+.systems .package-grid h3{color:#0d281b!important}
+.systems .package-grid p,.systems .package-grid li{color:#53625a!important}
+.systems .package-grid b{color:#08783d!important}
+.systems .package-grid a{background:linear-gradient(135deg,#0b9147,#18c568)!important;color:#fff!important}
+
+footer{background:linear-gradient(135deg,#f9fcfa,#ffffff)!important;color:#15231b!important;border-top:1px solid #d8e7de!important}
+footer h2{color:#0b6f3a!important}
+footer p{color:#647169!important}
+.footer-contact a{color:#087b40!important}
+
+.detail-box{background:linear-gradient(145deg,#ffffff,#eef7f2)!important;color:#152019!important;border-color:#20b965!important;box-shadow:0 18px 55px rgba(0,0,0,.24),0 0 25px rgba(32,185,101,.16)!important}
+.detail-box h2{color:#132019!important}
+.detail-box p{color:#58675f!important}
+.detail-close{background:#e7f1eb!important;color:#173524!important}
+.detail-price{background:#eaf8f0!important;color:#08713a!important;border-color:#63cf91!important}
+@media(max-width:560px){#products.section,.systems{background:#f8fbf9!important}}
