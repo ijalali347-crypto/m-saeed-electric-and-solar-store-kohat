@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ijalali347-crypto.github.io/m-saeed-electric-and-solar-store-kohat/sitemap.xml
