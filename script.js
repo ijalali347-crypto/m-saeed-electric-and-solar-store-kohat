@@ -3,17 +3,17 @@ const fab=document.getElementById('aiFab'),chat=document.getElementById('aiChat'
 function toggleAI(open){chat.classList.toggle('open',open);chat.setAttribute('aria-hidden',String(!open));if(open)setTimeout(()=>input.focus(),150)}
 fab?.addEventListener('click',()=>toggleAI(!chat.classList.contains('open')));closeAI?.addEventListener('click',()=>toggleAI(false));
 const answers=[
- {keys:['solar','system','panel'],reply:'For a solar system, tell me your load: number of fans, lights, ACs, refrigerator, water pump and how many backup hours you need. I can guide you toward 3kW, 5kW or 10kW.'},
- {keys:['ac','air conditioner'],reply:'We can help with air conditioners. Tell me the room size and whether you want inverter AC. For current model, stock and price, you can contact M Saeed or Munir on WhatsApp.'},
- {keys:['fridge','refrigerator'],reply:'For refrigerators, tell me the size or capacity you need, single/double door, and your preferred budget. We can then help narrow the right option.'},
- {keys:['cooler','air cooler'],reply:'For an air cooler, tell me the room size and whether you need a room cooler or larger desert-style cooler.'},
- {keys:['battery'],reply:'We cover solar batteries including lithium, tubular and lead-acid types. Tell me your inverter size and required backup time.'},
- {keys:['fan'],reply:'We can help with ceiling, pedestal, exhaust and rechargeable fans. Which type are you looking for?'},
- {keys:['pump','water'],reply:'For a water pump, tell me the required horsepower, water depth/head and whether it will run on solar or grid electricity.'},
- {keys:['price','cost'],reply:'Prices depend on brand, model and current stock. Tell me the exact product you need, or tap WhatsApp to ask the shop directly.'},
- {keys:['whatsapp','contact','call'],reply:'You can contact M Saeed at +92 332 9612170 or Munir at +92 333 9613862. Both WhatsApp contacts are shown at the top of the website.'}
+{keys:['سولر','solar','سسٹم','پینل'],reply:'سولر سسٹم منتخب کرنے کے لیے مجھے بتائیں: کتنے پنکھے، لائٹس، اے سی، ریفریجریٹر اور واٹر پمپ چلانے ہیں، اور کتنے گھنٹے بیک اپ چاہیے؟ پھر میں 3، 5 یا 10 کلوواٹ سسٹم کے بارے میں رہنمائی کر سکتا ہوں۔'},
+{keys:['اے سی','ایئر کنڈیشنر','ac'],reply:'اے سی کے لیے کمرے کا سائز اور یہ بتائیں کہ آپ انورٹر اے سی چاہتے ہیں یا عام۔ موجودہ ماڈل، اسٹاک اور قیمت کے لیے M Saeed یا Munir سے واٹس ایپ پر رابطہ کریں۔'},
+{keys:['فریج','ریفریجریٹر','fridge'],reply:'ریفریجریٹر کے لیے مطلوبہ سائز، سنگل یا ڈبل ڈور، اور اپنا بجٹ بتائیں تاکہ مناسب آپشن منتخب کرنے میں مدد کی جا سکے۔'},
+{keys:['کولر','air cooler'],reply:'ایئر کولر کے لیے کمرے کا سائز بتائیں اور یہ بھی کہ آپ روم کولر چاہتے ہیں یا بڑا ڈیزرٹ کولر۔'},
+{keys:['بیٹری','battery'],reply:'سولر کے لیے لیتھیم، ٹیوبولر اور لیڈ ایسڈ بیٹریاں استعمال ہوتی ہیں۔ اپنے انورٹر کا سائز اور مطلوبہ بیک اپ ٹائم بتائیں۔'},
+{keys:['پنکھا','فین','fan'],reply:'سیلنگ، پیڈسٹل، ایگزاسٹ اور ریچارج ایبل پنکھوں کے بارے میں مدد مل سکتی ہے۔ آپ کو کون سا پنکھا چاہیے؟'},
+{keys:['پمپ','واٹر','pump'],reply:'واٹر پمپ کے لیے مطلوبہ ہارس پاور، پانی کی گہرائی/ہیڈ اور یہ بتائیں کہ پمپ سولر پر چلانا ہے یا گرڈ بجلی پر۔'},
+{keys:['قیمت','ریٹ','price','cost'],reply:'قیمت برانڈ، ماڈل اور موجودہ اسٹاک کے مطابق ہوتی ہے۔ مطلوبہ پروڈکٹ بتائیں یا تازہ قیمت کے لیے دکان سے واٹس ایپ پر رابطہ کریں۔'},
+{keys:['واٹس ایپ','رابطہ','فون','whatsapp'],reply:'M Saeed سے +92 332 9612170 اور Munir سے +92 333 9613862 پر واٹس ایپ کے ذریعے رابطہ کیا جا سکتا ہے۔'}
 ];
-function botReply(q){const t=q.toLowerCase();for(const a of answers)if(a.keys.some(k=>t.includes(k)))return a.reply;return 'I can help with solar panels, inverters, batteries, ACs, refrigerators, air coolers, fans, pumps, geysers, lighting and other electrical items. Which product do you need?'}
+function botReply(q){const t=q.toLowerCase();for(const a of answers)if(a.keys.some(k=>t.includes(k)))return a.reply;return 'میں سولر پینلز، انورٹرز، بیٹریاں، اے سی، ریفریجریٹرز، ایئر کولرز، پنکھے، واٹر پمپس، گیزر، لائٹنگ اور دوسرے برقی سامان کے بارے میں مدد کر سکتا ہوں۔ آپ کو کون سی چیز چاہیے؟'}
 function send(q){q=q.trim();if(!q)return;msgs.insertAdjacentHTML('beforeend','<div class="user-msg"></div>');msgs.lastElementChild.textContent=q;setTimeout(()=>{const d=document.createElement('div');d.className='bot-msg';d.textContent=botReply(q);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight},250);msgs.scrollTop=msgs.scrollHeight}
 form?.addEventListener('submit',e=>{e.preventDefault();send(input.value);input.value=''});
-document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{if(b.textContent.includes('WhatsApp'))window.open('https://wa.me/923329612170','_blank');else send(b.textContent)}));
+document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{if(b.textContent.includes('واٹس ایپ'))window.open('https://wa.me/923329612170','_blank');else send(b.textContent)}));
