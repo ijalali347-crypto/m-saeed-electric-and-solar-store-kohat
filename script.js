@@ -65,3 +65,24 @@ function setLanguage(lang){
 }
 langToggle?.addEventListener('click',()=>setLanguage(document.documentElement.lang==='ur'?'en':'ur'));
 setLanguage(localStorage.getItem('storeLanguage')||'ur');
+
+const productDetails=[
+{match:['سولر انورٹرز','Solar Inverters'],icon:'⚡',ur:'انورٹرز',en:'Inverters',priceUr:'7 kV — 190,000 روپے | 10 kV — 20,000 روپے | آف گرڈ 7 کلوواٹ — 30,000 روپے | ہائبرڈ 6 کلوواٹ — 100,000 سے 600,000 روپے',priceEn:'7 kV — PKR 190,000 | 10 kV — PKR 20,000 | Off-grid 7 kW — PKR 30,000 | Hybrid 6 kW — PKR 100,000–600,000',textUr:'دستیاب انورٹر آپشنز اور قیمتیں۔',textEn:'Available inverter options and prices.'},
+{match:['سولر کیبلز اور کنیکٹرز','Solar Cables & Connectors'],icon:'🔌',ur:'10mm کیبل',en:'10mm Cable',priceUr:'260 روپے فی میٹر',priceEn:'PKR 260 per meter',textUr:'10mm کیبل کی قیمت فی میٹر۔',textEn:'Price for 10mm cable per meter.'},
+{match:['ریفریجریٹرز','Refrigerators'],icon:'🧊',ur:'ریفریجریٹرز',en:'Refrigerators',priceUr:'100,000 سے 140,000 روپے',priceEn:'PKR 100,000–140,000',textUr:'مختلف ماڈلز اور سائز کے مطابق قیمت۔',textEn:'Price varies by model and size.'},
+{match:['ایئر کنڈیشنرز','Air Conditioners'],icon:'❄️',ur:'ایئر کنڈیشنرز',en:'Air Conditioners',priceUr:'130,000 سے 207,000 روپے',priceEn:'PKR 130,000–207,000',textUr:'انورٹر اور اسپلٹ اے سی کے مختلف ماڈلز۔',textEn:'Different inverter and split AC models.'},
+{match:['ایئر کولرز','Air Coolers'],icon:'🌬️',ur:'ایئر کولرز',en:'Air Coolers',priceUr:'16,000 سے 40,000 روپے',priceEn:'PKR 16,000–40,000',textUr:'سائز اور ماڈل کے مطابق قیمت۔',textEn:'Price varies by size and model.'},
+{match:['پنکھے','Fans'],icon:'🌀',ur:'تیمور فین',en:'Taimoor Fan',priceUr:'11,000 روپے',priceEn:'PKR 11,000',textUr:'تیمور فین کی قیمت۔',textEn:'Taimoor fan price.'},
+{match:['کچن کے برقی آلات','Kitchen Appliances'],icon:'♨️',ur:'الیکٹرک چولہا',en:'Electric Stove',priceUr:'5,500 روپے',priceEn:'PKR 5,500',textUr:'الیکٹرک چولہے کی قیمت۔',textEn:'Electric stove price.'},
+{match:['واشنگ مشینیں','Washing Machines'],icon:'🫧',ur:'Boss واشنگ مشین',en:'Boss Washing Machine',priceUr:'19,000 سے 40,000 روپے',priceEn:'PKR 19,000–40,000',textUr:'Boss کمپنی کی واشنگ مشینیں، ماڈل کے مطابق قیمت۔',textEn:'Boss washing machines; price varies by model.'},
+{match:['بجلی کا سامان','Electrical Items'],icon:'🛵',ur:'الیکٹرک سکوٹی',en:'Electric Scooter',priceUr:'183,000 سے 300,000 روپے',priceEn:'PKR 183,000–300,000',textUr:'الیکٹرک سکوٹی کی مختلف اقسام اور قیمتیں۔',textEn:'Electric scooter options and prices.'}
+];
+const detailModal=document.getElementById('detailModal'),detailClose=document.getElementById('detailClose'),detailTitle=document.getElementById('detailTitle'),detailPrice=document.getElementById('detailPrice'),detailText=document.getElementById('detailText'),detailIcon=document.getElementById('detailIcon');
+function openDetails(card){
+ const title=card.querySelector('h3')?.textContent.trim();const d=productDetails.find(x=>x.match.includes(title));if(!d)return;
+ const en=document.documentElement.lang==='en';detailIcon.textContent=d.icon;detailTitle.textContent=en?d.en:d.ur;detailPrice.textContent=en?d.priceEn:d.priceUr;detailText.textContent=en?d.textEn:d.textUr;detailModal.classList.add('open');detailModal.setAttribute('aria-hidden','false');
+}
+document.querySelectorAll('.product button,.appliance-card button').forEach(btn=>{const card=btn.closest('.product,.appliance-card');const title=card?.querySelector('h3')?.textContent.trim();if(productDetails.some(x=>x.match.includes(title))){btn.textContent=document.documentElement.lang==='en'?'View Details →':'تفصیل دیکھیں ←';btn.dataset.detail='1';btn.addEventListener('click',()=>openDetails(card));}});
+function closeDetails(){detailModal?.classList.remove('open');detailModal?.setAttribute('aria-hidden','true')}
+detailClose?.addEventListener('click',closeDetails);detailModal?.addEventListener('click',e=>{if(e.target===detailModal)closeDetails()});
+langToggle?.addEventListener('click',()=>setTimeout(()=>{document.querySelectorAll('[data-detail="1"]').forEach(b=>b.textContent=document.documentElement.lang==='en'?'View Details →':'تفصیل دیکھیں ←')},0));
