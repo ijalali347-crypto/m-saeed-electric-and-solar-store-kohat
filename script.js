@@ -13,10 +13,21 @@ const answers=[
 {keys:['قیمت','ریٹ','price','cost'],reply:'قیمت برانڈ، ماڈل اور موجودہ اسٹاک کے مطابق ہوتی ہے۔ مطلوبہ پروڈکٹ بتائیں یا تازہ قیمت کے لیے دکان سے واٹس ایپ پر رابطہ کریں۔'},
 {keys:['واٹس ایپ','رابطہ','فون','whatsapp'],reply:'M Saeed سے +92 332 9612170 اور Munir سے +92 333 9613862 پر واٹس ایپ کے ذریعے رابطہ کیا جا سکتا ہے۔'}
 ];
-function botReply(q){const t=q.toLowerCase();for(const a of answers)if(a.keys.some(k=>t.includes(k)))return a.reply;return 'میں سولر پینلز، انورٹرز، بیٹریاں، اے سی، ریفریجریٹرز، ایئر کولرز، پنکھے، واٹر پمپس، گیزر، لائٹنگ اور دوسرے برقی سامان کے بارے میں مدد کر سکتا ہوں۔ آپ کو کون سی چیز چاہیے؟'}
+const answersEn=[
+{keys:['solar','system','panel'],reply:'Tell me how many fans, lights, AC units, refrigerators and water pumps you want to run, and how many hours of backup you need. I can then guide you toward a suitable solar setup.'},
+{keys:['ac','air conditioner'],reply:'For an air conditioner, tell me the room size and whether you want an inverter or standard AC. Current listed prices range from PKR 130,000 to PKR 207,000.'},
+{keys:['fridge','refrigerator'],reply:'Refrigerator prices currently listed range from PKR 100,000 to PKR 140,000. Tell me the size and whether you want a single-door or double-door model.'},
+{keys:['cooler','air cooler'],reply:'Air cooler prices currently listed range from PKR 16,000 to PKR 40,000. Tell me the room size so I can guide you.'},
+{keys:['battery'],reply:'Solar systems can use lithium, tubular or lead-acid batteries. Tell me your inverter size and required backup time.'},
+{keys:['fan'],reply:'Taimoor Fan is currently listed at PKR 11,000. We can also help with ceiling, pedestal, exhaust and rechargeable fans.'},
+{keys:['pump','water pump'],reply:'For a water pump, tell me the required horsepower, water head/depth and whether it will run on solar or grid electricity.'},
+{keys:['price','cost'],reply:'Prices depend on the product, model and stock. Tell me which product you want, or contact the store on WhatsApp for the latest availability.'},
+{keys:['whatsapp','contact','phone'],reply:'You can contact M Saeed on +92 332 9612170 or Munir on +92 333 9613862 via WhatsApp.'}
+];
+function botReply(q){const t=q.toLowerCase(),en=document.documentElement.lang==='en',list=en?answersEn:answers;for(const a of list)if(a.keys.some(k=>t.includes(k)))return a.reply;return en?'I can help with solar panels, inverters, batteries, ACs, refrigerators, air coolers, fans, water pumps, geysers, lighting and other electrical products. What are you looking for?':'میں سولر پینلز، انورٹرز، بیٹریاں، اے سی، ریفریجریٹرز، ایئر کولرز، پنکھے، واٹر پمپس، گیزر، لائٹنگ اور دوسرے برقی سامان کے بارے میں مدد کر سکتا ہوں۔ آپ کو کون سی چیز چاہیے؟'}
 function send(q){q=q.trim();if(!q)return;msgs.insertAdjacentHTML('beforeend','<div class="user-msg"></div>');msgs.lastElementChild.textContent=q;setTimeout(()=>{const d=document.createElement('div');d.className='bot-msg';d.textContent=botReply(q);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight},250);msgs.scrollTop=msgs.scrollHeight}
 form?.addEventListener('submit',e=>{e.preventDefault();send(input.value);input.value=''});
-document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{if(b.textContent.includes('واٹس ایپ'))window.open('https://wa.me/923329612170','_blank');else send(b.textContent)}));
+document.querySelectorAll('.quick button').forEach(b=>b.addEventListener('click',()=>{if(b.textContent.includes('واٹس ایپ')||b.textContent.includes('WhatsApp'))window.open('https://wa.me/923329612170','_blank');else send(b.textContent)}));
 const langToggle=document.getElementById('langToggle');
 const translations={
 'ہوم':'Home','سولر مصنوعات':'Solar Products','گھریلو آلات':'Appliances','سولر سسٹمز':'Solar Systems','رابطہ':'Contact',
@@ -62,6 +73,7 @@ function setLanguage(lang){
  fab?.setAttribute('aria-label',lang==='en'?'Open store assistant':'اسٹور اسسٹنٹ کھولیں');
  langToggle.textContent=lang==='ur'?'English':'اردو';
  localStorage.setItem('storeLanguage',lang);
+ msgs?.querySelectorAll('.bot-msg').forEach((m,i)=>{if(i===0)m.textContent=lang==='en'?'Hello! 👋 I can help you choose solar systems and electrical appliances. What are you looking for?':'السلام علیکم! 👋 میں سولر سسٹم اور برقی آلات کے انتخاب میں آپ کی مدد کر سکتا ہوں۔ آپ کیا تلاش کر رہے ہیں؟'});
 }
 langToggle?.addEventListener('click',()=>setLanguage(document.documentElement.lang==='ur'?'en':'ur'));
 setLanguage(localStorage.getItem('storeLanguage')||'ur');
