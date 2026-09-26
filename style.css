@@ -60,3 +60,7 @@ footer p{color:#647169!important}
 .detail-close{background:#e7f1eb!important;color:#173524!important}
 .detail-price{background:#eaf8f0!important;color:#08713a!important;border-color:#63cf91!important}
 @media(max-width:560px){#products.section,.systems{background:#f8fbf9!important}}
+
+/* Never reverse phone numbers in RTL/Urdu */
+.phone-number{direction:ltr!important;unicode-bidi:isolate!important;display:inline-block!important;text-align:left!important;font-family:Arial,sans-serif!important;letter-spacing:.2px}
+.hero-contacts .phone-number{direction:ltr!important;unicode-bidi:isolate!important}
