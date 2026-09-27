@@ -99,5 +99,16 @@ function closeDetails(){detailModal?.classList.remove('open');detailModal?.setAt
 detailClose?.addEventListener('click',closeDetails);detailModal?.addEventListener('click',e=>{if(e.target===detailModal)closeDetails()});
 langToggle?.addEventListener('click',()=>setTimeout(()=>{document.querySelectorAll('[data-detail="1"]').forEach(b=>b.textContent=document.documentElement.lang==='en'?'View Details →':'تفصیل دیکھیں ←')},0));
 
-/* Reliable inquiry/detail close behavior on mobile */
-(function(){const modal=document.getElementById('detailModal'),close=document.getElementById('detailClose');function shut(){if(!modal)return;modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}close?.addEventListener('pointerup',function(e){e.preventDefault();e.stopPropagation();shut();});document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});modal?.addEventListener('pointerup',e=>{if(e.target===modal)shut()});})();
+/* Stable inquiry popup controls */
+(function(){
+ const modal=document.getElementById('detailModal');
+ const closeBtn=document.getElementById('detailClose');
+ if(!modal||!closeBtn)return;
+ const closeModal=()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')};
+ const openObserver=new MutationObserver(()=>document.body.classList.toggle('modal-open',modal.classList.contains('open')));
+ openObserver.observe(modal,{attributes:true,attributeFilter:['class']});
+ closeBtn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();closeModal()});
+ closeBtn.addEventListener('touchend',e=>{e.preventDefault();e.stopPropagation();closeModal()},{passive:false});
+ modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+})();
